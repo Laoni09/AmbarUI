@@ -1,2 +1,2 @@
 # AmbarUI
-Electron frontend to AutoAMBAR
+ Electron frontend to AutoAMBAR
