@@ -7,7 +7,7 @@ require('./ipc/concessionariasIpc');
 let mainWindow;
 
 app.whenReady().then(() => {
-    const backendPath = 'C:\\Users\\laoni\\OneDrive\\Documentos\\AMBAR\\AutoAMBAR\\backend\\dist\\main.exe';
+    const backendPath = path.resolve(__dirname, '../../../AutoAMBAR/backend/dist/main.exe');
 
     const backendProcess = exec(backendPath, (error) => {
         if (error) console.error("Erro ao iniciar o backend:", error);
