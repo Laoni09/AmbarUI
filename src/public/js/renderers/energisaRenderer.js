@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const btnANEEL = document.getElementById("btnANEEL")
+    const btnANEEL = document.getElementById("btnANEELEnergisa")
     const btnART = document.getElementById("btnART")
 
     if (btnANEEL) {
