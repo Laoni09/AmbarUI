@@ -9,6 +9,8 @@ let mainWindow;
 app.whenReady().then(() => {
     const backendPath = path.resolve(__dirname, '../../../AutoAMBAR/backend/dist/main.exe');
 
+    console.log(`Backend inicializado de ${backendPath}`)
+
     const backendProcess = exec(backendPath, (error) => {
         if (error) console.error("Erro ao iniciar o backend:", error);
     });
@@ -26,14 +28,17 @@ app.whenReady().then(() => {
     mainWindow.loadFile('src/views/index.html');
 
     ipcMain.on('open-concessionarias', () => {
+        console.log(backendPath)
         mainWindow.loadFile('src/views/concessionarias.html');
     });
 
     ipcMain.on('open-art', () => {
+        console.log(backendPath)
         mainWindow.loadFile('src/views/art.html');
     });
 
     ipcMain.on("executar-services", async (event, serviceNome) => {
+        console.log(backendPath)
         try {
             const resposta = await axios.get(`http://127.0.0.1:5000/executar/${serviceNome}`);
             event.reply("resposta-script", resposta.data);
