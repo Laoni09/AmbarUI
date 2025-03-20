@@ -2,17 +2,32 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const axios = require("axios");
 const { exec } = require("child_process");
+const fs = require('fs');
 require('./ipc/concessionariasIpc'); 
 
 let mainWindow;
 
 app.whenReady().then(() => {
-    const backendPath = path.resolve(__dirname, '../../../AutoAMBAR/backend/dist/main.exe');
+    const isPackaged = app.isPackaged;
 
-    console.log(`Backend inicializado de ${backendPath}`)
+    const backendPath = isPackaged
+      ? path.join(process.resourcesPath, 'backend', 'main.exe') 
+      : path.resolve(__dirname, '../../../AutoAMBAR/backend/dist/main.exe'); 
+    
+    if (!fs.existsSync(backendPath)) {
+      console.error("⚠️ Backend não encontrado:", backendPath);
+    } else {
+      console.log("✅ Backend encontrado:", backendPath);
+    }
 
-    const backendProcess = exec(backendPath, (error) => {
-        if (error) console.error("Erro ao iniciar o backend:", error);
+    const backendProcess = exec(`"${backendPath}"`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Erro ao executar backend: ${error.message}`);
+      }
+      if (stderr) {
+        console.error(`Erro do backend: ${stderr}`);
+      }
+      console.log(`Saída do backend: ${stdout}`);
     });
 
     mainWindow = new BrowserWindow({
