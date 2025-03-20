@@ -11,7 +11,7 @@ app.whenReady().then(() => {
     const isPackaged = app.isPackaged;
 
     const backendPath = isPackaged
-      ? path.join(process.resourcesPath, 'backend', 'main.exe') 
+      ? path.join(process.resourcesPath, 'backend.exe') 
       : path.resolve(__dirname, '../../../AutoAMBAR/backend/dist/main.exe'); 
     
     if (!fs.existsSync(backendPath)) {
