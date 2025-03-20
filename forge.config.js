@@ -16,7 +16,8 @@ module.exports = {
     }
   ],
   packagerConfig: {
-    asar: true,
+    asar: true, 
+    extraResource: ['./../AutoAMBAR/backend/dist/backend.exe']
   },
   rebuildConfig: {},
   makers: [

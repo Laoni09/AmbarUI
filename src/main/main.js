@@ -43,12 +43,10 @@ app.whenReady().then(() => {
     mainWindow.loadFile('src/views/index.html');
 
     ipcMain.on('open-concessionarias', () => {
-        console.log(backendPath)
         mainWindow.loadFile('src/views/concessionarias.html');
     });
 
     ipcMain.on('open-art', () => {
-        console.log(backendPath)
         mainWindow.loadFile('src/views/art.html');
     });
 
